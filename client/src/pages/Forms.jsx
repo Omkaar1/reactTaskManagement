@@ -1,13 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Forms = () => {
+  const [formValues, setFormValues] = useState({
+    username: "",
+    firstName: "",
+    lastName: "",
+    plantName: "",
+    role: "",
+    product: "",
+  });
+  const handleSubmit = () => {
+    alert("Hi");
+  };
+
+  const handleChange = (event) => {
+    const { username, firstName, lastName, plantName, role, product } =
+      event.target;
+
+    setFormValues({
+      ...formValues,
+    });
+  };
   return (
     <div className="w-full">
-      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <form
+        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        onSubmit={handleSubmit}
+      >
         <div className="mb-4 w-1/4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
             for="username"
+            onChange={handleChange}
           >
             Username
           </label>
@@ -18,17 +42,18 @@ const Forms = () => {
             placeholder="Username"
           />
         </div>
+
         <div className="flex flex-wrap -mx-3">
           <div className="w-full md:w-1/4 px-3">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-first-name"
+              for="firstName"
             >
               First Name
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              id="grid-first-name"
+              id="firstName"
               type="text"
               placeholder="Jane"
             />
@@ -50,43 +75,44 @@ const Forms = () => {
           <div className="w-full md:w-1/4 px-3">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-first-name"
+              for="plantName"
             >
               plant name
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              id="grid-first-name"
+              id="plantName"
               type="text"
-              placeholder="Jane"
+              placeholder="Pune"
             />
           </div>
           <div className="w-full md:w-1/4 px-3">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-last-name"
+              for="role"
             >
               role
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-last-name"
+              id="role"
               type="text"
               placeholder="Doe"
             />
           </div>
         </div>
+
         <div className="flex flex-wrap -mx-3">
           <div className="w-full md:w-1/4 px-3 md:mb-0">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-first-name"
+              for="product"
             >
               Product
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              id="grid-first-name"
+              id="product"
               type="text"
               placeholder="Apple"
             />
@@ -94,13 +120,13 @@ const Forms = () => {
           <div className="w-full md:w-1/4 px-3">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-last-name"
+              for="grid-quantity"
             >
               Quantity
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-last-name"
+              id="grid-quantity"
               type="number"
               placeholder="1"
             />
@@ -108,63 +134,85 @@ const Forms = () => {
           <div className="w-full md:w-1/4 px-3">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-last-name"
+              for="grid-number"
+            >
+              Number
+            </label>
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-number"
+              type="number"
+              placeholder="Product code"
+            />
+          </div>
+          <div className="w-full md:w-1/4 px-3">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              for="grid-attachment"
             >
               Attachment
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-last-name"
+              id="grid-attachment"
               type="file"
             />
           </div>
         </div>
+
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-first-name"
+              for="grid-details"
             >
-              First Name
+              Details
             </label>
-            <input
+            <textarea
               className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              id="grid-first-name"
+              id="grid-details"
               type="text"
-              placeholder="Jane"
+              placeholder="Describe the need of product"
             />
             <p className="text-red-500 text-xs italic">
-              Please fill out this field.
+              Please fill out all field.
             </p>
           </div>
-          <div className="w-full md:w-1/2 px-3">
+          <div className="w-full md:w-1/4 px-3">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-last-name"
+              for="grid-from-date"
             >
-              Last Name
+              FromDate
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-last-name"
-              type="text"
-              placeholder="Doe"
+              id="grid-from-date"
+              type="date"
+            />
+          </div>
+          <div className="w-full md:w-1/4 px-3">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              for="grid-to-date"
+            >
+              To Date
+            </label>
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-to-date"
+              type="date"
             />
           </div>
         </div>
+
         <div className="flex items-center justify-between">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="button"
+            type="submit"
           >
-            Sign In
+            Submit
           </button>
-          <a
-            className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-            href="#"
-          >
-            Forgot Password?
-          </a>
         </div>
       </form>
     </div>
