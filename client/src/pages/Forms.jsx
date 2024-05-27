@@ -1,25 +1,33 @@
 import React, { useState } from "react";
 
 const Forms = () => {
-  const [formValues, setFormValues] = useState({
+  const initialFormState = {
     username: "",
-    firstName: "",
-    lastName: "",
+    name: "",
     plantName: "",
     role: "",
     product: "",
-  });
-  const handleSubmit = () => {
-    alert("Hi");
+    quantity: "",
+    number: "",
+    attachment: "",
+    details: "",
+    fromDate: "",
+    toDate: "",
   };
 
+  const [inputValues, setInputValues] = useState(initialFormState);
   const handleChange = (event) => {
-    const { username, firstName, lastName, plantName, role, product } =
-      event.target;
-
-    setFormValues({
-      ...formValues,
+    const { name, value } = event.target;
+    setInputValues({
+      ...inputValues,
+      [name]: value,
     });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(inputValues);
+    setInputValues(initialFormState);
   };
   return (
     <div className="w-full">
@@ -31,15 +39,17 @@ const Forms = () => {
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
             for="username"
-            onChange={handleChange}
           >
             Username
           </label>
           <input
             className="shadow appearance-none border border-blue-400 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="username"
+            name="username"
             type="text"
             placeholder="Username"
+            value={inputValues.username}
+            onChange={handleChange}
           />
         </div>
 
@@ -47,29 +57,18 @@ const Forms = () => {
           <div className="w-full md:w-1/4 px-3">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="firstName"
+              for="Name"
             >
-              First Name
+              Name
             </label>
             <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              id="firstName"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none hover:bg-white hover:border-gray-500"
+              id="Name"
+              name="Name"
               type="text"
-              placeholder="Jane"
-            />
-          </div>
-          <div className="w-full md:w-1/4 px-3">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-last-name"
-            >
-              Last Name
-            </label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-last-name"
-              type="text"
-              placeholder="Doe"
+              value={inputValues.Name}
+              placeholder="ABC"
+              onChange={handleChange}
             />
           </div>
           <div className="w-full md:w-1/4 px-3">
@@ -80,10 +79,13 @@ const Forms = () => {
               plant name
             </label>
             <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none hover:bg-white hover:border-gray-500"
               id="plantName"
               type="text"
               placeholder="Pune"
+              name="plantName"
+              value={inputValues.plantName}
+              onChange={handleChange}
             />
           </div>
           <div className="w-full md:w-1/4 px-3">
@@ -94,10 +96,13 @@ const Forms = () => {
               role
             </label>
             <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none hover:bg-white hover:border-gray-500"
               id="role"
               type="text"
               placeholder="Doe"
+              name="role"
+              value={inputValues.role}
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -111,10 +116,13 @@ const Forms = () => {
               Product
             </label>
             <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none hover:bg-white hover:border-gray-500"
               id="product"
               type="text"
               placeholder="Apple"
+              name="product"
+              value={inputValues.product}
+              onChange={handleChange}
             />
           </div>
           <div className="w-full md:w-1/4 px-3">
@@ -125,10 +133,13 @@ const Forms = () => {
               Quantity
             </label>
             <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none hover:bg-white hover:border-gray-500"
               id="grid-quantity"
               type="number"
               placeholder="1"
+              name="quantity"
+              value={inputValues.quantity}
+              onChange={handleChange}
             />
           </div>
           <div className="w-full md:w-1/4 px-3">
@@ -139,10 +150,13 @@ const Forms = () => {
               Number
             </label>
             <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none hover:bg-white hover:border-gray-500"
               id="grid-number"
               type="number"
               placeholder="Product code"
+              name="number"
+              value={inputValues.number}
+              onChange={handleChange}
             />
           </div>
           <div className="w-full md:w-1/4 px-3">
@@ -153,9 +167,12 @@ const Forms = () => {
               Attachment
             </label>
             <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none hover:bg-white hover:border-gray-500"
               id="grid-attachment"
               type="file"
+              name="attachment"
+              value={inputValues.attachment}
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -169,10 +186,13 @@ const Forms = () => {
               Details
             </label>
             <textarea
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none hover:bg-white hover:border-gray-500"
               id="grid-details"
               type="text"
+              name="details"
+              value={inputValues.details}
               placeholder="Describe the need of product"
+              onChange={handleChange}
             />
             <p className="text-red-500 text-xs italic">
               Please fill out all field.
@@ -186,9 +206,12 @@ const Forms = () => {
               FromDate
             </label>
             <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none hover:bg-white hover:border-gray-500"
               id="grid-from-date"
               type="date"
+              name="fromDate"
+              value={inputValues.fromDate}
+              onChange={handleChange}
             />
           </div>
           <div className="w-full md:w-1/4 px-3">
@@ -199,9 +222,12 @@ const Forms = () => {
               To Date
             </label>
             <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none hover:bg-white hover:border-gray-500"
               id="grid-to-date"
               type="date"
+              name="toDate"
+              value={inputValues.toDate}
+              onChange={handleChange}
             />
           </div>
         </div>
